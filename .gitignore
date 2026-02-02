@@ -3,4 +3,5 @@ dist
 .DS_Store
 *.local
 node_modules/.tmp
-
+test-results
+playwright-report

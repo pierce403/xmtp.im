@@ -13,15 +13,21 @@ async function openRecipient(page: import("@playwright/test").Page) {
 test("resolves recipient and enables composer", async ({ page }) => {
   await openRecipient(page);
 
-  await expect(page.getByText(/Status:\\s*can message/i)).toBeVisible({
-    timeout: 120_000,
+  const recipientPanel = page
+    .getByRole("heading", { name: "Recipient" })
+    .locator("..");
+  await expect(recipientPanel.getByText(/can message/i)).toBeVisible({
+    timeout: 90_000,
   });
 
-  const addressCode = page.locator("code").filter({ hasText: /^0x/i }).first();
+  const addressCode = recipientPanel
+    .locator("code")
+    .filter({ hasText: /^0x/i })
+    .first();
   await expect(addressCode).toHaveText(/^0x[a-fA-F0-9]{40}$/);
 
   const composer = page.getByPlaceholder("Type a message…");
-  await expect(composer).toBeEnabled({ timeout: 120_000 });
+  await expect(composer).toBeEnabled({ timeout: 90_000 });
 });
 
 test("sends a real XMTP message (opt-in)", async ({ page }) => {
@@ -47,4 +53,3 @@ test("sends a real XMTP message (opt-in)", async ({ page }) => {
     timeout: 120_000,
   });
 });
-

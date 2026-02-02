@@ -47,6 +47,7 @@ npm run e2e
 
 ## Known Issues & Solutions
 - **ENS resolution failing with Cloudflare RPC**: `https://cloudflare-eth.com` currently errors on ENS Universal Resolver `resolveWithGateways` (viem) calls. Default RPCs avoid this and `src/lib/ens.ts` retries across `MAINNET_RPC_URLS`.
+- **Vite dev + XMTP web worker**: if you see a missing worker module under `node_modules/.vite/deps/workers/client?...`, exclude `@xmtp/browser-sdk` from `optimizeDeps` (see `vite.config.ts`).
 - **GitHub Actions runner acquisition failures**: if you see “The job was not acquired by Runner of type hosted…”, check GitHub status and retry later (it’s often an external outage), then rerun with `gh run rerun <run-id>`.
 - **TypeScript picking up global @types**: if you hit `TS2688: Cannot find type definition file for 'hapi__shot'` (or similar), constrain `typeRoots` in `tsconfig.app.json` / `tsconfig.node.json` to `./node_modules/@types` (already done).
 - **Pages deep-link 404s**: if `/name.eth` breaks on GitHub Pages, ensure `public/404.html` and the redirect script in `index.html` remain intact.
@@ -67,3 +68,4 @@ npm run e2e
 - 2026-02-02 Win: Production-only XMTP + ENS resolution + single-DM UX shipped with local `npm run build` succeeding.
 - 2026-02-02 Miss: GitHub Actions hosted runners failed to acquire due to an external outage; check status early before tweaking workflow configs.
 - 2026-02-02 Win: Fixed ENS resolution for `deanpierce.eth` by avoiding Cloudflare RPC defaults and adding RPC fallback.
+- 2026-02-02 Win: Fixed Vite dev worker issues for XMTP SDK by excluding `@xmtp/browser-sdk` from dep optimization.

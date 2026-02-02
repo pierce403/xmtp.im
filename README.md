@@ -14,7 +14,7 @@ npm run dev
 
 ## Optional config
 - `VITE_WALLETCONNECT_PROJECT_ID`: enables WalletConnect.
-- `VITE_MAINNET_RPC_URL`: overrides the default mainnet RPC (default: Cloudflare).
+- `VITE_MAINNET_RPC_URL`: overrides the mainnet RPC used for ENS resolution (defaults to `https://ethereum.publicnode.com` with fallbacks).
 
 ## Deploy (GitHub Pages)
 This repo includes a GitHub Actions workflow that builds and deploys `dist/` to GitHub Pages:

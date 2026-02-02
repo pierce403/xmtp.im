@@ -21,7 +21,15 @@ export async function resolveRecipient(inputRaw: string): Promise<ResolvedRecipi
   }
 
   if (looksLikeEns(input)) {
-    const address = await resolveEnsName(input);
+    let address: `0x${string}` | null;
+    try {
+      address = await resolveEnsName(input);
+    } catch (error) {
+      console.warn("ENS resolution failed", { input, error });
+      throw new Error(
+        `ENS resolution failed for ${input}. Try again or paste the 0x address.`,
+      );
+    }
     if (!address) {
       throw new Error(`Could not resolve ENS name: ${input}`);
     }

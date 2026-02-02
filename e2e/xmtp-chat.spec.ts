@@ -38,12 +38,15 @@ test("sends a real XMTP message (opt-in)", async ({ page }) => {
 
   await openRecipient(page);
 
-  await expect(page.getByText(/Status:\\s*can message/i)).toBeVisible({
-    timeout: 120_000,
+  const recipientPanel = page
+    .getByRole("heading", { name: "Recipient" })
+    .locator("..");
+  await expect(recipientPanel.getByText(/can message/i)).toBeVisible({
+    timeout: 90_000,
   });
 
   const composer = page.getByPlaceholder("Type a message…");
-  await expect(composer).toBeEnabled({ timeout: 120_000 });
+  await expect(composer).toBeEnabled({ timeout: 90_000 });
 
   const text = `Playwright test ${new Date().toISOString()}`;
   await composer.fill(text);

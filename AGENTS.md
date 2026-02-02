@@ -21,7 +21,7 @@ This repo is a Vite + React + TypeScript static SPA deployed to GitHub Pages. It
 
 ### Recipient resolution
 - `/:target` accepts `name.eth` or `0x…`.
-- ENS resolution uses `viem` on Ethereum mainnet via `VITE_MAINNET_RPC_URL` (defaults to Cloudflare).
+- ENS resolution uses `viem` on Ethereum mainnet via `VITE_MAINNET_RPC_URL` (defaults to `https://ethereum.publicnode.com` with fallbacks).
 
 ### Wallet connections
 - Browser wallet uses `window.ethereum` (MetaMask/Coinbase/etc).
@@ -39,6 +39,9 @@ npm run e2e
 - Treat `src/config.ts` as the single source of truth for XMTP env and mainnet RPC.
 - Keep the UI focused on a single DM; avoid adding multi-inbox or multi-thread UI unless requested.
 - Keep TypeScript strict; prefer fixing types over loosening compiler settings.
+
+## Reading List
+- XMTP docs (chat apps): `https://raw.githubusercontent.com/xmtp/docs-xmtp-org/main/llms/llms-chat-apps.txt` (prefer `[Browser]` code samples for this repo).
 
 ## GitHub Pages Deployment
 - Deploy workflow: `.github/workflows/deploy.yml`

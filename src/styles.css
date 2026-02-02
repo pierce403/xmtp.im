@@ -50,6 +50,14 @@ a {
   text-decoration: none;
 }
 
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 button,
 input,
 textarea {
@@ -68,6 +76,7 @@ textarea {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   backdrop-filter: blur(14px);
+  overflow: hidden;
 }
 
 .header {
@@ -177,6 +186,10 @@ textarea {
   gap: 12px;
 }
 
+.grid > * {
+  min-width: 0;
+}
+
 @media (min-width: 860px) {
   .grid {
     grid-template-columns: 360px 1fr;
@@ -256,6 +269,16 @@ textarea {
   list-style: none;
   max-height: 56vh;
   overflow: auto;
+  overflow-x: hidden;
+}
+
+.messageItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.messageItem.me {
+  align-items: flex-end;
 }
 
 .bubble {
@@ -267,6 +290,7 @@ textarea {
   line-height: 1.4;
   font-size: 14px;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 @media (prefers-color-scheme: light) {
@@ -287,18 +311,27 @@ textarea {
   margin-top: 6px;
   font-size: 11px;
   color: var(--muted);
+  flex-wrap: wrap;
 }
 
 .composer {
   margin-top: 12px;
   display: flex;
   gap: 10px;
+  align-items: flex-end;
 }
 
 .composer textarea {
   min-height: 44px;
   max-height: 140px;
   resize: vertical;
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+}
+
+.composer button {
+  flex: 0 0 auto;
 }
 
 .error {

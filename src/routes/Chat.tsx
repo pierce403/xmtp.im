@@ -57,6 +57,23 @@ export default function Chat() {
   const [dm, setDm] = useState<Dm | null>(null);
   const [messages, setMessages] = useState<DecodedMessage[]>([]);
 
+  const { displayMessages, hiddenMessageCount } = useMemo(() => {
+    const display: DecodedMessage[] = [];
+    let hidden = 0;
+
+    for (const message of messages) {
+      const isDisplayable =
+        typeof message.content === "string" || typeof message.fallback === "string";
+      if (isDisplayable) {
+        display.push(message);
+      } else {
+        hidden += 1;
+      }
+    }
+
+    return { displayMessages: display, hiddenMessageCount: hidden };
+  }, [messages]);
+
   const [messageText, setMessageText] = useState("");
   const [status, setStatus] = useState<string>("Idle");
   const [error, setError] = useState<string | null>(null);
@@ -460,22 +477,27 @@ export default function Chat() {
                 </div>
               )}
 
+              {hiddenMessageCount > 0 && (
+                <div className="help" style={{ marginTop: 0 }}>
+                  {hiddenMessageCount} message{hiddenMessageCount === 1 ? "" : "s"}{" "}
+                  hidden (unsupported types).
+                </div>
+              )}
+
               <ul className="messages" ref={listRef} aria-label="Messages">
-                {messages.length === 0 ? (
+                {displayMessages.length === 0 ? (
                   <li className="help">
                     {client && dm
                       ? "No messages yet. Send the first message."
                       : "Connect to load messages."}
                   </li>
                 ) : (
-                  messages.map((m) => {
+                  displayMessages.map((m) => {
                     const isMe = !!client && m.senderInboxId === client.inboxId;
                     const text =
-                      typeof m.content === "string"
-                        ? m.content
-                        : m.fallback ?? "[unsupported message]";
+                      typeof m.content === "string" ? m.content : m.fallback ?? "";
                     return (
-                      <li key={m.id}>
+                      <li key={m.id} className={`messageItem ${isMe ? "me" : ""}`}>
                         <div className={`bubble ${isMe ? "me" : ""}`}>{text}</div>
                         <div className="meta">
                           <span>{isMe ? "me" : "them"}</span>

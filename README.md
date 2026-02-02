@@ -12,6 +12,18 @@ npm install
 npm run dev
 ```
 
+## E2E (Playwright)
+By default, the E2E suite does **not** send messages. To run it:
+```bash
+npx playwright install chromium
+npm run e2e
+```
+
+To opt-in to sending a real XMTP message:
+```bash
+E2E_SEND_MESSAGE=1 E2E_RECIPIENT=deanpierce.eth npm run e2e
+```
+
 ## Optional config
 - `VITE_WALLETCONNECT_PROJECT_ID`: enables WalletConnect.
 - `VITE_MAINNET_RPC_URL`: overrides the mainnet RPC used for ENS resolution (defaults to `https://ethereum.publicnode.com` with fallbacks).

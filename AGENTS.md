@@ -32,6 +32,7 @@ This repo is a Vite + React + TypeScript static SPA deployed to GitHub Pages. It
 npm install
 npm run dev
 npm run build
+npm run e2e
 ```
 
 ## Coding Conventions
@@ -45,9 +46,11 @@ npm run build
 - `.nojekyll` is present to avoid Pages/Jekyll quirks.
 
 ## Known Issues & Solutions
+- **ENS resolution failing with Cloudflare RPC**: `https://cloudflare-eth.com` currently errors on ENS Universal Resolver `resolveWithGateways` (viem) calls. Default RPCs avoid this and `src/lib/ens.ts` retries across `MAINNET_RPC_URLS`.
 - **GitHub Actions runner acquisition failures**: if you see “The job was not acquired by Runner of type hosted…”, check GitHub status and retry later (it’s often an external outage), then rerun with `gh run rerun <run-id>`.
 - **TypeScript picking up global @types**: if you hit `TS2688: Cannot find type definition file for 'hapi__shot'` (or similar), constrain `typeRoots` in `tsconfig.app.json` / `tsconfig.node.json` to `./node_modules/@types` (already done).
 - **Pages deep-link 404s**: if `/name.eth` breaks on GitHub Pages, ensure `public/404.html` and the redirect script in `index.html` remain intact.
+- **Playwright install weight**: `@playwright/test` pulls `playwright` which downloads browser binaries by default. In CI/build-only workflows, set `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` (already set in `.github/workflows/deploy.yml`).
 
 ## Agent Tips
 - **Commit + push for every task update** (small, atomic commits preferred).
@@ -63,3 +66,4 @@ npm run build
 ### Wins & Misses (keep recent)
 - 2026-02-02 Win: Production-only XMTP + ENS resolution + single-DM UX shipped with local `npm run build` succeeding.
 - 2026-02-02 Miss: GitHub Actions hosted runners failed to acquire due to an external outage; check status early before tweaking workflow configs.
+- 2026-02-02 Win: Fixed ENS resolution for `deanpierce.eth` by avoiding Cloudflare RPC defaults and adding RPC fallback.

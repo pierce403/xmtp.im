@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const recipient = process.env.E2E_RECIPIENT ?? "deanpierce.eth";
+const recipient = process.env.E2E_RECIPIENT ?? "xmtp-docs.eth";
 const shouldSendMessage = process.env.E2E_SEND_MESSAGE === "1";
 
 async function openRecipient(page: import("@playwright/test").Page) {

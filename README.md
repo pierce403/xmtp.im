@@ -2,7 +2,7 @@
 Super basic client meant for one-off XMTP conversations.
 
 ## What it does
-- Visit `/<ens-or-address>` (example: `/deanpierce.eth`) to resolve the recipient and open a single DM.
+- Visit `/<ens-or-address>` (example: `/xmtp-docs.eth`) to resolve the recipient and open a single DM.
 - Uses the XMTP **production** network only (no dev network support).
 - Defaults to a new **ephemeral** key per tab/session, with options to connect a browser wallet or WalletConnect.
 
@@ -21,7 +21,7 @@ npm run e2e
 
 To opt-in to sending a real XMTP message:
 ```bash
-E2E_SEND_MESSAGE=1 E2E_RECIPIENT=deanpierce.eth npm run e2e
+E2E_SEND_MESSAGE=1 E2E_RECIPIENT=xmtp-docs.eth npm run e2e
 ```
 
 ## Optional config
@@ -34,4 +34,4 @@ This repo includes a GitHub Actions workflow that builds and deploys `dist/` to 
 
 In your repo settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
 
-Note: `public/404.html` + the script in `index.html` enable SPA-style routing on GitHub Pages so paths like `/deanpierce.eth` work.
+Note: `public/404.html` + the script in `index.html` enable SPA-style routing on GitHub Pages so paths like `/xmtp-docs.eth` work.

@@ -33,13 +33,13 @@ export default function Home() {
           <form onSubmit={onSubmit} className="grid">
             <div className="panel">
               <h2>Message</h2>
-              <p>Enter an ENS name (like deanpierce.eth) or an 0x address.</p>
+              <p>Enter an ENS name (like xmtp-docs.eth) or an 0x address.</p>
             </div>
             <div className="panel">
               <div className="row">
                 <input
                   className="input"
-                  placeholder="deanpierce.eth"
+                  placeholder="xmtp-docs.eth"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
                   autoCapitalize="none"
@@ -51,7 +51,7 @@ export default function Home() {
                 </button>
               </div>
               <div className="help">
-                Examples: <code>/deanpierce.eth</code>, <code>/0xabc…</code>
+                Examples: <code>/xmtp-docs.eth</code>, <code>/0xabc…</code>
               </div>
             </div>
           </form>
@@ -60,4 +60,3 @@ export default function Home() {
     </div>
   );
 }
-

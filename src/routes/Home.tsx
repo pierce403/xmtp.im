@@ -23,7 +23,7 @@ export default function Home() {
         <div className="header">
           <div className="title">
             <h1>xmtp.im</h1>
-            <p>One-off XMTP conversations (production network only)</p>
+            <p>One-off XMTP conversations</p>
           </div>
           <div className="pill">
             <strong>Tip</strong> open <span>/name.eth</span>

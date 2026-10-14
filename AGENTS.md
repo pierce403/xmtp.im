@@ -55,6 +55,8 @@ npm run e2e
 - **TypeScript picking up global @types**: if you hit `TS2688: Cannot find type definition file for 'hapi__shot'` (or similar), constrain `typeRoots` in `tsconfig.app.json` / `tsconfig.node.json` to `./node_modules/@types` (already done).
 - **Pages deep-link 404s**: if `/name.eth` breaks on GitHub Pages, ensure `public/404.html` and the redirect script in `index.html` remain intact.
 - **Playwright install weight**: `@playwright/test` pulls `playwright` which downloads browser binaries by default. In CI/build-only workflows, set `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` (already set in `.github/workflows/deploy.yml`).
+- **Lockfile refresh and Node types**: after removing stale transitive packages, the build needs `@types/node` as a direct dev dependency because `tsconfig.node.json` explicitly lists the `node` type library. Re-run `npm audit fix` until the compatible `jayson`/`uuid` graph settles, then confirm with clean `npm ci` and `npm run build`. Never set `E2E_SEND_MESSAGE=1` during a dependency smoke test.
+- **Production XMTP journey baseline**: the read-only Playwright test resolved `xmtp-docs.eth` and connected an ephemeral identity, but the composer stayed disabled after `Failed to verify all installations`. The identical test failed the same way on unchanged `main` on 2026-10-14; treat production installation verification as a separate release blocker, not proof that a lockfile change repaired chat.
 
 ## Agent Tips
 - **Commit + push for every task update** (small, atomic commits preferred).

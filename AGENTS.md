@@ -74,3 +74,5 @@ npm run e2e
 - 2026-02-02 Miss: GitHub Actions hosted runners failed to acquire due to an external outage; check status early before tweaking workflow configs.
 - 2026-02-02 Win: Fixed ENS resolution for `.eth` names by avoiding Cloudflare RPC defaults and adding RPC fallback.
 - 2026-02-02 Win: Fixed Vite dev worker issues for XMTP SDK by excluding `@xmtp/browser-sdk` from dep optimization.
+
+- Cloudflare hosting uses separate `build:cloudflare` postprocessing and a typed recipient fallback in `cloudflare/worker.ts`. Original `public/404.html` and Pages build remain recovery paths. Missing static assets/unrelated paths keep404; hosting tests send no production XMTP messages. `npm run check:worker` generates binding types and checks the handler.

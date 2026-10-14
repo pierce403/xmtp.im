@@ -5,3 +5,6 @@ dist
 node_modules/.tmp
 test-results
 playwright-report
+
+.wrangler/
+.cloudflare-check/

@@ -35,3 +35,18 @@ This repo includes a GitHub Actions workflow that builds and deploys `dist/` to 
 In your repo settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
 
 Note: `public/404.html` + the script in `index.html` enable SPA-style routing on GitHub Pages so paths like `/xmtp-docs.eth` work.
+
+## Cloudflare hosting
+
+Native Git publishes `main` with `npm run build:cloudflare` and `npm run deploy`.
+The original generator and GitHub Pages build remain available for recovery.
+Cloudflare-only postprocessing adds a no-store revision marker and terminal404;
+previews are disabled and deployment credentials stay in Cloudflare.
+Application source, local data formats and existing public URLs are preserved.
+
+The hosting handler passed generated binding type checks, three routing tests
+and ten real local Worker checks using pinned Wrangler4.151.0 at the configured
+October14 compatibility date. Existing production XMTP installation verification
+remains a separate known failure from the pre-migration baseline; hosting checks
+do not claim chat delivery and send no messages. Pages retains its original
+redirect fallback.

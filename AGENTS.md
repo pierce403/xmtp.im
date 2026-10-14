@@ -43,7 +43,7 @@ npm run e2e
 ## Reading List
 - XMTP docs (chat apps): `https://raw.githubusercontent.com/xmtp/docs-xmtp-org/main/llms/llms-chat-apps.txt` (prefer `[Browser]` code samples for this repo).
 
-## GitHub Pages Deployment
+## GitHub Pages Recovery Deployment
 - Deploy workflow: `.github/workflows/deploy.yml`
 - SPA routing on Pages: `public/404.html` + the redirect script in `index.html`.
 - `.nojekyll` is present to avoid Pages/Jekyll quirks.
@@ -76,3 +76,5 @@ npm run e2e
 - 2026-02-02 Win: Fixed Vite dev worker issues for XMTP SDK by excluding `@xmtp/browser-sdk` from dep optimization.
 
 - Cloudflare hosting uses separate `build:cloudflare` postprocessing and a typed recipient fallback in `cloudflare/worker.ts`. Original `public/404.html` and Pages build remain recovery paths. Missing static assets/unrelated paths keep404; hosting tests send no production XMTP messages. `npm run check:worker` generates binding types and checks the handler.
+
+- Production now uses native Cloudflare Git builds from main. Hosting acceptance includes all68native assets, real404, managed HTTPS, browser shell and received visitor/request metrics. Keep the preexisting production chat-delivery failure separate; do not mark messaging repaired from hosting success.

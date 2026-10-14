@@ -50,3 +50,9 @@ October14 compatibility date. Existing production XMTP installation verification
 remains a separate known failure from the pre-migration baseline; hosting checks
 do not claim chat delivery and send no messages. Pages retains its original
 redirect fallback.
+
+Live Cloudflare hosting acceptance passed: exact native commit/build/version and
+route, managed HTTPS, all68generated public assets, valid recipient-route HTML,
+real404, clean fresh-tab browser shell, received visits and request metrics.
+Message delivery remains unverified; the preexisting SDK installation-verification
+failure was not repaired by the hosting migration. No message-send controls were used.

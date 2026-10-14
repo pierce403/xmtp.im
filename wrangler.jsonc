@@ -23,5 +23,11 @@
       "head_sampling_rate": 0.01
     }
   },
-  "main": "cloudflare/worker.ts"
+  "main": "cloudflare/worker.ts",
+  "routes": [
+    {
+      "pattern": "xmtp.im/*",
+      "zone_name": "xmtp.im"
+    }
+  ]
 }

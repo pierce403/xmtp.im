@@ -56,3 +56,8 @@ route, managed HTTPS, all68generated public assets, valid recipient-route HTML,
 real404, clean fresh-tab browser shell, received visits and request metrics.
 Message delivery remains unverified; the preexisting SDK installation-verification
 failure was not repaired by the hosting migration. No message-send controls were used.
+
+## Licensing scope
+
+Original code and documentation authored for this project by Dean Pierce are licensed under the [Apache License 2.0](LICENSE).
+Third-party dependencies, assets, and quoted material retain their respective licenses and notices. This grant does not relicense third-party work.
